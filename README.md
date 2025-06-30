@@ -18,7 +18,7 @@ This Terraform module creates an AWS VPC with public subnets and outputs the VPC
 ```hcl
 module "vpc" {
   source  = "julietwainoi/vpc-module/aws"
-  version = "1.0.0"
+  version = "1.0.1"
 
   vpc_name       = "my-vpc"
   vpc_cidr       = "10.0.0.0/16"

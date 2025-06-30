@@ -1,12 +1,51 @@
-## 🔧 Input Variables
+# Terraform AWS VPC Module
 
-All variables have default values, so they are optional unless you want to override them.
+This Terraform module creates an AWS VPC with public subnets and outputs the VPC ID.
 
-| Name             | Description                         | Type           | Default                          | Required |
-|------------------|-------------------------------------|----------------|----------------------------------|----------|
-| `vpc_name`       | Name tag for the VPC                | `string`       | `"my-vpc"`                       | ❌       |
-| `vpc_cidr`       | CIDR block for the VPC              | `string`       | `"10.0.0.0/16"`                  | ❌       |
-| `azs`            | List of availability zones          | `list(string)` | `["us-east-1a", "us-east-1b"]`   | ❌       |
-| `public_subnets` | List of public subnet CIDRs         | `list(string)` | `["10.0.1.0/24", "10.0.2.0/24"]` | ❌       |
+---
 
-> 💡 **Note:** Although these variables are not required due to default values, you can override them when using the module to customize your setup.
+## Requirements
+
+| Name      | Version  |
+|-----------|----------|
+| terraform | >= 1.0.0 |
+| aws       | >= 4.0   |
+
+---
+
+## Usage
+
+```hcl
+module "vpc" {
+  source  = "julietwainoi/vpc-module/aws"
+  version = "1.0.0"
+
+  vpc_name       = "my-vpc"
+  vpc_cidr       = "10.0.0.0/16"
+  azs            = ["us-east-1a", "us-east-1b"]
+  public_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
+}
+
+```
+## Inputs
+
+| Name            | Description             | Type           | Default                          | Required |
+|-----------------|-------------------------|----------------|----------------------------------|----------|
+| vpc_name        | Name of the VPC         | `string`       | `"my-vpc"`                       | no       |
+| vpc_cidr        | CIDR block for the VPC  | `string`       | `"10.0.0.0/16"`                  | no       |
+| azs             | Availability Zones list | `list(string)` | `["us-east-1a", "us-east-1b"]`   | no       |
+| public_subnets  | Public subnet CIDRs     | `list(string)` | `["10.0.1.0/24", "10.0.2.0/24"]` | no       |
+
+## Outputs
+
+| Name   | Description       |
+|--------|-------------------|
+| vpc_id | The ID of the VPC |
+
+
+## License
+
+
+MIT
+
+---
